@@ -118,7 +118,7 @@ function StudentInfo() {
           <input
             type="text"
             id="education"
-            placeholder="Enter your educational background"
+            placeholder="Enter your education"
             value={formData.education}
             onChange={handleChange}
           />
