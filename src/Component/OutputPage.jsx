@@ -36,7 +36,7 @@ function Output() {
         <div className="section">
           <h2>Education</h2>
           <p>
-            <strong>Education:</strong> {studentData.college}
+            <strong>Education:</strong> {studentData.education}
           </p>
           <p>
             <strong>College:</strong> {studentData.college}
