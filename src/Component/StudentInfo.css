@@ -1,0 +1,187 @@
+/* Existing styles... */
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f4f4f4, #e2e2e2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.input-image,
+.input-name,
+.input-email,
+.input-dob,
+.input-experience,
+.input-skill,
+.input-college,
+.input-github,
+.input-linkedin,
+.input-education,
+.input-projects {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: center;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+  font-family: "Arial", sans-serif;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+input[type="url"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+.submit {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.submit button {
+  background-color: #6f42c1;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+  width: 48%; /* Adjusted to fit two buttons */
+  max-width: 350px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit button:hover {
+  transform: translateY(-2px);
+}
+
+.submit button:hover {
+  background-color: #5a32a3;
+}
+
+/* Clear button specific styling */
+.submit .clear-button {
+  background-color: #f44336; /* Red */
+}
+
+.submit .clear-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Project section styling */
+.input-projects {
+  margin-top: 20px;
+}
+
+.input-projects h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-family: "Arial", sans-serif;
+}
+
+.project-entry label {
+  font-weight: bold;
+  color: #444;
+}
+
+.project-entry input[type="text"],
+.project-entry textarea {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.project-entry input[type="text"]:focus,
+.project-entry textarea:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+.project-entry textarea {
+  height: 120px;
+}
+
+.input-projects button {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+}
+
+.input-projects button:hover {
+  background-color: #0056b3;
+}
+
+.project-entry {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.remove-project {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
