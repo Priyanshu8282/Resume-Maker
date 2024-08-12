@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import StudentInfo from "./Component/StudentInfo";
-import OutputPage from "./Component/OutputPage";
+import MainPage from "./Component/MainPage";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<StudentInfo/>} />
-        <Route path="/output" element={<OutputPage />} />
+        <Route path="/" element={<MainPage/>} />
+        <Route path="/output" element={<MainPage/>} />
       </Routes>
     </Router>
   );

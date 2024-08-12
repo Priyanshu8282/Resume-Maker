@@ -1,155 +1,114 @@
-/* Output.css */
-
-/* Base styles remain the same */
-body {
-  font-family: "Roboto", sans-serif;
-  background-color: #e9ecef;
-  margin: 0;
-  padding: 0;
-}
 
 .portfolio-container {
-  background: linear-gradient(
-    135deg,
-    #f4f4f4,
-    #e2e2e2
-  );
-  color: #343a40;
-  padding: 50px;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   max-width: 800px;
-  width: 100%;
-  margin: 60px auto;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: "Arial", sans-serif;
 }
 
 .portfolio-container h1 {
   text-align: center;
-  color: #17a2b8;
-  margin-bottom: 40px;
-  font-size: 32px;
-  border-bottom: 2px solid #17a2b8;
-  padding-bottom: 10px;
+  color: #00796b;
+  margin-bottom: 20px;
 }
 
+/* Content styles */
 .portfolio-content {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 20px;
+}
+
+/* Section styles */
+.section {
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .section h2 {
-  margin-bottom: 15px;
-  color: #ffc107;
   font-size: 24px;
+  color: #004d40;
+  margin-bottom: 10px;
 }
 
 .section p {
-  margin: 6px 0;
-  color: #343a40;
-  line-height: 1.7;
   font-size: 18px;
+  color: #00695c;
+  margin: 5px 0;
 }
 
-.section a {
-  color: #17a2b8;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.section a:hover {
-  color: #ffc107;
-  text-decoration: underline;
-}
-
+/* Project entry styles */
 .project-entry {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 }
 
 .project-entry p {
   font-size: 16px;
-  color: #333;
+  color: #00796b;
 }
 
+/* Back button styles */
 .back-button {
-  margin-top: 40px;
-  padding: 15px;
-  width: 100%;
+  display: block;
+  margin: 30px auto 0;
+  padding: 10px 20px;
+  background-color: #00838f;
+  color: white;
   border: none;
-  background-color: #17a2b8;
-  color: #f4f4f4;
   border-radius: 8px;
-  cursor: pointer;
   font-size: 18px;
   font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
 }
 
 .back-button:hover {
-  background-color: #ffc107;
-  color: #343a40;
+  background-color: #005662;
+  transform: translateY(-2px);
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .portfolio-container {
-    padding: 30px;
-    margin: 30px auto;
-  }
-
-  .portfolio-container h1 {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .portfolio-content {
-    gap: 25px;
-  }
-
-  .section h2 {
-    font-size: 22px;
-  }
-
-  .section p {
-    font-size: 16px;
-  }
-
-  .back-button {
-    font-size: 16px;
-    padding: 12px;
-  }
+/* Profile image section */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 480px) {
-  .portfolio-container {
-    padding: 20px;
-    margin: 20px auto;
-  }
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #004d40;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-container{ 
+  display: flex;
+  align-items: center;
+  
+}
+.download-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
 
-  .portfolio-container h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  .portfolio-content {
-    gap: 20px;
-  }
-
-  .section h2 {
-    font-size: 20px;
-  }
-
-  .section p {
-    font-size: 14px;
-  }
-
-  .back-button {
-    font-size: 14px;
-    padding: 10px;
-  }
+.download-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
 }

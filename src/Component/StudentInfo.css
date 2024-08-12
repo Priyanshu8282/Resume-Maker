@@ -22,6 +22,7 @@ form {
   flex-direction: column;
   gap: 15px;
 }
+
 .input-image,
 .input-name,
 .input-email,
@@ -31,6 +32,7 @@ form {
 .input-college,
 .input-github,
 .input-linkedin,
+.input-youtube,   
 .input-education,
 .input-projects {
   display: flex;
@@ -184,4 +186,37 @@ textarea:focus {
   color: black;
   font-size: 18px;
   font-weight: bold;
+}
+
+/* Styles for the image input */
+.input-image {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 90%;
+  justify-content: center;
+}
+
+.input-image label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+  font-family: "Arial", sans-serif;
+}
+
+.input-image input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  cursor: pointer;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.input-image input[type="file"]:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
 }
