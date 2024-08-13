@@ -6,6 +6,7 @@ function StudentInfo({ studentData, setStudentData }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    mobile:"",
     dob: "",
     experience: "",
     skill: "",
@@ -17,6 +18,7 @@ function StudentInfo({ studentData, setStudentData }) {
     projects: [{ title: "", description: "" }],
     image: null,
   });
+  const [mobileNumber, setMobileNumber] = useState("");
 
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("studentPortfolio"));
@@ -95,6 +97,7 @@ function StudentInfo({ studentData, setStudentData }) {
     setFormData({
       name: "",
       email: "",
+      mobile:"",
       dob: "",
       experience: "",
       skill: "",
@@ -109,6 +112,7 @@ function StudentInfo({ studentData, setStudentData }) {
     setStudentData({
       name: "",
       email: "",
+      mobile:"",
       dob: "",
       experience: "",
       skill: "",
@@ -120,6 +124,13 @@ function StudentInfo({ studentData, setStudentData }) {
       projects: [{ title: "", description: "" }],
       image: null,
     });
+  
+      
+
+  };
+
+  const generateWhatsAppLink = () => {
+    return `https://wa.me/${mobileNumber}`;
   };
 
   return (
@@ -160,6 +171,18 @@ function StudentInfo({ studentData, setStudentData }) {
             value={formData.dob}
             name="dob"
             onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-mobile">
+          <label htmlFor="mobile">Mobile Number:</label>
+          <input
+            type="tel"
+            id="mobile"
+            placeholder="Enter mobile number"
+            value={formData.mobile}
+            name="mobile"
+            onChange={handleChange} // Update mobile number state
             required
           />
         </div>
@@ -305,6 +328,7 @@ function StudentInfo({ studentData, setStudentData }) {
           <button type="button" onClick={handleClear} className="clear-button">
             Clear
           </button>
+          
         </div>
       </form>
     </div>

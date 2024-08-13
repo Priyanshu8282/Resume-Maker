@@ -32,6 +32,7 @@ form {
 .input-college,
 .input-github,
 .input-linkedin,
+.input-mobile,
 .input-youtube,   
 .input-education,
 .input-projects {
@@ -54,6 +55,7 @@ input[type="date"],
 input[type="number"],
 input[type="url"],
 input[type="file"],
+input[type="tel"],
 textarea {
   width: 100%;
   padding: 10px;
@@ -69,7 +71,8 @@ input[type="date"]:focus,
 input[type="number"]:focus,
 input[type="url"]:focus,
 input[type="file"]:focus,
-textarea:focus {
+input[type="tel"]:focus,
+textarea:focus {  
   border-color: #66afe9;
   outline: none;
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);

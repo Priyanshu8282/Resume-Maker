@@ -112,3 +112,35 @@
   background-color: #218838;
   transform: translateY(-2px);
 }
+.mobile-number {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hover-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 5px;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.mobile-number:hover .hover-options {
+  display: block;
+}
+
+.hover-options a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.hover-options a:hover {
+  background-color: #f1f1f1;
+}
