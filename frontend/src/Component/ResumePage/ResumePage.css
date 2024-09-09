@@ -1,0 +1,151 @@
+
+.portfolio-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .portfolio-container h1 {
+    text-align: center;
+    color: #00796b;
+    margin-bottom: 20px;
+  }
+  
+  /* Content styles */
+  .portfolio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Section styles */
+  .section {
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);   
+  
+  }
+  
+  .section h2 {
+    font-size: 24px;
+    color: #004d40;
+    margin-bottom: 10px;
+  }
+  
+  .section p {
+    font-size: 18px;
+    color: #00695c;
+    margin: 5px 0;
+    
+  }
+  .section .pra{ 
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Project entry styles */
+  .project-entry {
+    margin-top: 10px;
+  }
+  
+  .project-entry p {
+    font-size: 16px;
+    color: #00796b;
+  }
+  
+  /* Back button styles */
+  .back-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    background-color: #00838f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+  }
+  
+  .back-button:hover {
+    background-color: #005662;
+    transform: translateY(-2px);
+  }
+  
+  /* Profile image section */
+  .profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #004d40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .btn-container{ 
+    display: flex;
+    align-items: center;
+    
+  }
+  .download-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+  }
+  
+  .download-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+  }
+  .mobile-number {
+    position: relative;
+    display: inline-block;
+    
+  }
+  
+  .hover-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 5px;
+    z-index: 10;
+    white-space: nowrap;
+  }
+  
+  .mobile-number:hover .hover-options {
+    display: block;
+  }
+  
+  .hover-options a {
+    display: block;
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .hover-options a:hover {
+    background-color: #f1f1f1;
+  }

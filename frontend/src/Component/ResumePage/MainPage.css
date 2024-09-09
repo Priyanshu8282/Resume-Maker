@@ -1,0 +1,75 @@
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f4f4f4; /* Optional background color for the whole page */
+  flex-wrap: wrap; /* Allows wrapping of components on smaller screens */
+}
+
+/* Container styles for both components */
+.student-info-container,
+.output-container {
+  flex: 1;
+  margin: 10px;
+  background: linear-gradient(135deg, #f4f4f4, #e2e2e2); /* Gradient background */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Adjust the components to take up equal width */
+.student-info-container,
+.output-container {
+  max-width: 45%; /* Adjust as needed to control the width of each section */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .student-info-container,
+  .output-container {
+    max-width: 100%; /* Make each component take full width */
+    margin: 10px 0; /* Add space above and below the components */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column; /* Stack components vertically */
+    align-items: center; /* Center align the stacked components */
+  }
+
+  .student-info-container,
+  .output-container {
+    max-width: 90%; /* Reduce the width slightly for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .student-info-container,
+  .output-container {
+    max-width: 100%; /* Full width for very small screens */
+    padding: 10px; /* Reduce padding for small screens */
+  }
+
+  .main-container {
+    padding: 10px; /* Reduce padding around the container */
+  }
+}
+
+/* Additional styles for form elements within StudentInfo */
+.container {
+  width: 100%;
+  background: none; /* Removed the background as it is applied to the container itself */
+  box-shadow: none; /* Remove the box-shadow to avoid redundancy */
+  padding: 0; /* Remove padding to match the new layout */
+}
+
+/* Override specific section styles in Output */
+.portfolio-container {
+  max-width: 100%; /* Ensure it uses the full width of the container */
+  padding: 0;
+  background: none; /* Remove the background as it's already set for the container */
+  box-shadow: none; /* Remove the box-shadow */
+  border-radius: 0; /* No border radius for better alignment */
+}

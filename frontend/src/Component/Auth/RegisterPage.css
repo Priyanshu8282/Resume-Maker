@@ -1,0 +1,94 @@
+/* RegisterPage.css */
+  
+.signin-container{
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 350px;
+  }
+  
+  h1 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 1rem;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #28a745;
+    outline: none;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 1rem;
+  }
+  
+
+  
+  p {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  a {
+    color: #28a745;
+    text-decoration: none;
+  }
+  
+
+  .google-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 .1rem .3rem 0 rgba(0, 0, 0, 0.25);
+    max-width: 22rem;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add some margin to separate from other elements */
+  }
+  
+  
+  .google-icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+  }
