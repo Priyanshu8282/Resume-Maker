@@ -31,7 +31,7 @@ function ResumePage() {
 
   const fetchResumeData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/resume/${id}`, { withCredentials: true });
+      const response = await axios.get(`https://resume-maker-lw6e.onrender.com/api/resume/${id}`, { withCredentials: true });
       console.log("res", response.data);
       console.log("studebtdata", studentData);
       setStudentData(response?.data);
