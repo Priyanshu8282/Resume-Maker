@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/auth/checkAuth", {
+      const response = await axios.get("https://resume-maker-lw6e.onrender.com/auth/checkAuth", {
         withCredentials: true,
       });
       console.log("response:", response.data.isLoggedIn);
