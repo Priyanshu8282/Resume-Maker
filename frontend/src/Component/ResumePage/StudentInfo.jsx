@@ -49,7 +49,7 @@ function StudentInfo({ studentData, setStudentData}) {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getStudents", {
+      const res = await axios.get("https://resume-maker-lw6e.onrender.com/api/getStudents", {
         withCredentials: true,
       });
 
