@@ -25,3 +25,15 @@ Resume Maker is a web application designed to simplify the process of creating p
 
 - Node.js and npm installed on your machine.
 - MongoDB (if using for storage).
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Priyanshu8282/Resume-Maker.git
+
+2. Install the dependencies:
+    npm install
+3.Start the application:
+   npm run dev
+   
