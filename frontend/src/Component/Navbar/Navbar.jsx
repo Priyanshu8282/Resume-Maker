@@ -32,7 +32,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/auth/logout",
+        "https://resume-maker-b545.onrender.com/auth/logout",
         {},
         { withCredentials: true }
       );
