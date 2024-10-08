@@ -33,7 +33,7 @@ function StudentInfo({ studentData, setStudentData}) {
   }, []);
   const fetchUserEmail = async () => {
     try {
-      const res = await axios.get("https://resume-maker-lw6e.onrender.com/api/getUserEmail", {
+      const res = await axios.get("https://resume-maker-b545.onrender.com/api/getUserEmail", {
         withCredentials: true,
       });
       setLoggedInEmail(res.data.email);
@@ -49,7 +49,7 @@ function StudentInfo({ studentData, setStudentData}) {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("https://resume-maker-lw6e.onrender.com/api/getStudents", {
+      const res = await axios.get("https://resume-maker-b545.onrender.com/api/getStudents", {
         withCredentials: true,
       });
 
@@ -102,7 +102,7 @@ function StudentInfo({ studentData, setStudentData}) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/createStudents",
+        "https://resume-maker-b545.onrender.com/api/createStudents",
         formData,
         {
           headers: {
