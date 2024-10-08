@@ -15,7 +15,7 @@ function LoginPage() {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get('https://resume-maker-lw6e.onrender.com/auth/checkAuth', { withCredentials: true });
+      const response = await axios.get('https://resume-maker-b545.onrender.com/auth/checkAuth', { withCredentials: true });
       console.log('response:', response.data);
       setIsLogged(response.data.isLoggedIn);
     } catch (error) {
@@ -28,7 +28,7 @@ function LoginPage() {
     e.preventDefault();
     console.log('Login request data:', userData);
     try {
-      const response = await axios.post('http://localhost:5000/auth/login', userData,{withCredentials:true});
+      const response = await axios.post('https://resume-maker-b545.onrender.com/auth/login', userData,{withCredentials:true});
       console.log(response.data);
       
       toast.success('Login successful!');
