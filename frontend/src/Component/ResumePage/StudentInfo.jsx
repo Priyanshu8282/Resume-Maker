@@ -4,7 +4,7 @@ import "./StudentInfo.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { set } from "mongoose";
+
 
 function StudentInfo({ studentData, setStudentData}) {
   const [formData, setFormData] = useState({
