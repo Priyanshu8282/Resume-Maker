@@ -19,12 +19,12 @@ function MainPage() {
     image: "", 
     id: "", 
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
 
   return (
     <div className="main-container">
       <div className="student-info-container">
-        <StudentInfo studentData={studentData} setStudentData={setStudentData} isLoggedIn={isLoggedIn}/>
+        <StudentInfo studentData={studentData} setStudentData={setStudentData}/>
       </div>
       <div className="output-container1">
         <Output studentData={studentData} setStudentData={setStudentData}/>
