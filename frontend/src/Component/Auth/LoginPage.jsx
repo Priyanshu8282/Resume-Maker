@@ -53,6 +53,9 @@ function LoginPage() {
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
  
   return (
     <div className="center-container">
@@ -64,7 +67,7 @@ function LoginPage() {
           <label htmlFor='password'>Password: <input type="password" name='password' placeholder="Enter your password" onChange={handleChange} required /></label>
           <button type='submit'>Login</button>
         
-          <p>Don't have an account? <a href="/register">Sign Up</a></p>
+           <p>Don't have an account? <span onClick={handleRegisterClick} style={{ color: 'green', cursor: 'pointer' }}>Sign Up</span></p>
         </form>
        
       </div>
