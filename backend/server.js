@@ -22,7 +22,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Middleware
 app.use(cors({
-  origin: 'https://resume-maker-teal-zeta.vercel.app', // Replace with your frontend's origin
+  origin: 'https://resume-maker-1-8vfd.onrender.com', // Replace with your frontend's origin
   credentials: true
 }));
 app.use(express.json({ limit: '50mb' }));
