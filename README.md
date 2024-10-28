@@ -1,4 +1,4 @@
-Resume Maker
+#Resume Maker
 
 
 A web application for creating professional resumes quickly and easily. The Resume Maker project enables users to input their personal, educational, and professional details, customize their resume layout, and download it as a PDF.
