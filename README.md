@@ -5,12 +5,11 @@ A web application for creating professional resumes quickly and easily. The Resu
 
 
 Features
-JWT-based Authentication: Secure login and registration using JSON Web Tokens.
-Resume Customization: Users can enter and edit their personal details, education, skills, experience, and other sections.
-Real-time Preview: See changes live as the resume is being created.
-Downloadable PDF: Generate a PDF of the resume using html-pdf library.
-User-Friendly Interface: Clean and intuitive UI for easy resume creation.
-Installation
+JWT-based Authentication: Secure login and registration.
+Resume Customization: Input and edit sections like personal details, education, skills, and experience.
+Real-time Preview: Live preview while editing.
+PDF Download: Generate a downloadable PDF of the resume using html-pdf.
+User-Friendly Interface: Clean and intuitive design.
 Clone the repository:
 
 bash
@@ -30,25 +29,6 @@ Copy code
 cd ../server
 npm install
 Set up environment variables: Create a .env file in the server directory with the following variables:
-
-plaintext
-Copy code
-PORT=5000
-MONGO_URI=your_mongo_db_connection_string
-JWT_SECRET=your_jwt_secret_key
-Run the application:
-
-Start the backend server:
-bash
-Copy code
-cd server
-npm start
-Start the frontend development server:
-bash
-Copy code
-cd ../client
-npm start
-Open the app in your browser at http://localhost:3000.
 
 Technologies Used
 Frontend: React, CSS
