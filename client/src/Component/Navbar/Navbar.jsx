@@ -25,7 +25,7 @@ const Navbar = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:5000/auth/checkAuth", {
+      const response = await axios.get("https://resume-maker-b545.onrender.com/auth/checkAuth", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,7 +49,7 @@ const Navbar = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/auth/logout",
+        "https://resume-maker-b545.onrender.com/auth/logout",
         {},
         {
           headers: {
