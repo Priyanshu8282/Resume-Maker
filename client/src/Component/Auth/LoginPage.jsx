@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import "./LoginPage.css"
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthContext';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +20,7 @@ const LoginPage = () => {
         localStorage.setItem('token', response.data.token);
         toast.success('Login successful!');
         setIsLogged(true); // Update auth state
-        navigate('/dashboard'); // Redirect to a protected route
+        navigate('/resume'); // Redirect to a protected route
       } else {
         toast.error(response.data.message);
       }
@@ -28,12 +30,45 @@ const LoginPage = () => {
     }
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
+    <div className="center-container">
+      <ToastContainer />
+      <div className='login-container'>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='email'>Email: 
+            <input 
+              type="text" 
+              name='email' 
+              placeholder="Enter your email" 
+              value={email}
+              onChange={handleEmailChange} 
+              required 
+            />
+          </label>
+          <label htmlFor='password'>Password: 
+            <input 
+              type="password" 
+              name='password' 
+              placeholder="Enter your password" 
+              value={password}
+              onChange={handlePasswordChange} 
+              required 
+            />
+          </label>  
+          <button type='submit'>Login</button>
+          <p>Don't have an account? <a href="/register">Sign Up</a></p>
+        </form>
+      </div>
+    </div>
   );
 };
 
