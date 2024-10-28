@@ -25,8 +25,12 @@ const LoginPage = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error('Login failed. Please try again.');
+      if (error.response && error.response.status === 400 && error.response.data.message === 'User already exists') {
+        toast.error('Email is already registered. Please use a different email.');
+      } else {
+        console.error('Error saving data:', error);
+        toast.error('An error occurred while saving data. Please try again.');
+      }
     }
   };
 
