@@ -32,7 +32,7 @@ function StudentInfo({ studentData, setStudentData }) {
 
   const fetchUserEmail = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getUserEmail", {
+      const res = await axios.get("https://resume-maker-b545.onrender.com/api/getUserEmail", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -48,7 +48,7 @@ function StudentInfo({ studentData, setStudentData }) {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getStudents", {
+      const res = await axios.get("https://resume-maker-b545.onrender.com/api/getStudents", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -103,7 +103,7 @@ function StudentInfo({ studentData, setStudentData }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/createStudents",
+        "https://resume-maker-b545.onrender.com/api/createStudents",
         formData,
         {
           headers: {
