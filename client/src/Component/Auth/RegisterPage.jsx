@@ -13,7 +13,7 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/auth/register', userData);
+      const response = await axios.post('https://resume-maker-b545.onrender.com/auth/register', userData);
       toast.success('Data saved successfully!');
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.message === 'User already exists') {

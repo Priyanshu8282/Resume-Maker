@@ -15,7 +15,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+      const response = await axios.post('https://resume-maker-b545.onrender.com/auth/login', { email, password });
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         toast.success('Login successful!');
