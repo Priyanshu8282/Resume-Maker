@@ -9,11 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when the request starts
     try {
       const response = await axios.post('https://resume-maker-b545.onrender.com/auth/login', { email, password });
       if (response.data.success) {
@@ -31,6 +33,8 @@ const LoginPage = () => {
         console.error('Error saving data:', error);
         toast.error('An error occurred while saving data. Please try again.');
       }
+    } finally {
+      setLoading(false); // Set loading to false when the request completes
     }
   };
 
@@ -68,7 +72,9 @@ const LoginPage = () => {
               required 
             />
           </label>  
-          <button type='submit'>Login</button>
+          <button type='submit' disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
           <p>Don't have an account? <a href="/register">Sign Up</a></p>
         </form>
       </div>
