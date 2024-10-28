@@ -15,7 +15,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/resume-maker.git
+git clone https://github.com/Priyanshu8282/Resume-Maker.git
 cd resume-maker
 Install frontend dependencies:
 
