@@ -29,7 +29,10 @@ const LoginPage = () => {
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.message === 'User already exists') {
         toast.error('Email is already registered. Please use a different email.');
-      } else {
+      } else if (error.response.status === 401 && error.response.data.message === 'Incorrect password') {
+          toast.error('Incorrect password. Please try again.');
+        }
+      else {
         console.error('Error saving data:', error);
         toast.error('An error occurred while saving data. Please try again.');
       }
