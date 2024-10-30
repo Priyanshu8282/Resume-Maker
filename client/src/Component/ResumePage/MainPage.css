@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 20px;
+  
   background-color: #f4f4f4; /* Optional background color for the whole page */
   flex-wrap: wrap; /* Allows wrapping of components on smaller screens */
 }
