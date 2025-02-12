@@ -48,6 +48,9 @@ const LoginPage = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+ const handleNavigateToRegister = () => {
+    navigate('/register');
+  };
 
   return (
     <div className="center-container">
@@ -78,7 +81,7 @@ const LoginPage = () => {
           <button type='submit' disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
-          <p>Don't have an account? <a href="/register">Sign Up</a></p>
+         <p>Don't have an account? <a onClick={handleNavigateToRegister}>Sign Up</a></p>
         </form>
       </div>
     </div>
