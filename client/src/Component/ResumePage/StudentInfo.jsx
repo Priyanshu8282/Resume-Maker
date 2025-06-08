@@ -52,7 +52,7 @@ function StudentInfo({ studentData, setStudentData }) {
         return;
       }
 
-      const apiUrl = `http://localhost:5000/api/getStudents/${userData.email}`;
+      const apiUrl = `https://resume-maker-b545.onrender.com/api/getStudents/${userData.email}`;
       console.log("Fetching from URL:", apiUrl);
 
       const res = await axios.get(apiUrl, {
@@ -145,7 +145,7 @@ function StudentInfo({ studentData, setStudentData }) {
 
       console.log("Submitting form data:", dataToSubmit);
       const response = await axios.post(
-        "http://localhost:5000/api/createStudents",
+        "https://resume-maker-b545.onrender.com/api/createStudents",
         dataToSubmit,
         {
           headers: {
