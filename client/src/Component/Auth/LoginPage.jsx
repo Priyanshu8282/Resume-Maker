@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://resume-maker-b545.onrender.com';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
