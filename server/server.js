@@ -1,12 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
-import connectDb from './config/db.js';
-import registerRoute from './routes/registerRoute.js';
+import connectDb from './database/db.js';
+
+import userRoute from './routes/userRoute.js';
 import path from 'path';
+
 import studentRoute from './routes/studentRoute.js';
-import loginRoute from './routes/loginRoute.js';
-import logoutRoute from './routes/logoutRoute.js';
+
+import isAuthenticated from './middleware/auth.js'; // Import the middleware
 
 const app = express();
 const port = 5000;
@@ -21,7 +23,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // CORS configuration
 const corsOptions = {
-  origin: 'http://localhost:5173', // Replace with your frontend's origin
+  origin: 'http://localhost:5174', // Replace with your frontend's origin
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 app.use(cors(corsOptions));
@@ -33,10 +35,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 connectDb();
 
 // Use routes
-app.use('/api', studentRoute);
-app.use('/auth', registerRoute);
-app.use('/auth', loginRoute);
-app.use('/auth', logoutRoute);
+app.use('/api', isAuthenticated, studentRoute); // Protect all /api routes
+app.use('/auth', userRoute);
+
 
 // Start the server
 app.listen(port, () => {

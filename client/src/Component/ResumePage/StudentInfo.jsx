@@ -26,42 +26,72 @@ function StudentInfo({ studentData, setStudentData }) {
   const [loggedInEmail, setLoggedInEmail] = useState("");
 
   useEffect(() => {
-    fetchUserEmail();
+    // Get user email from localStorage
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData && userData.email) {
+      setLoggedInEmail(userData.email);
+      // Set the email in formData
+      setFormData(prev => ({ ...prev, email: userData.email }));
+      setStudentData(prev => ({ ...prev, email: userData.email }));
+    }
     fetchData();
   }, []);
 
-  const fetchUserEmail = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/getUserEmail", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        withCredentials: true,
-      });
-      setLoggedInEmail(res.data.email);
-      console.log("User email:", res.data.email);
-    } catch (error) {
-      console.error("Error fetching user email:", error);
-      toast.error("Failed to fetch user email. Please try again.");
-    }
-  };
-
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getStudents", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        withCredentials: true,
+      const token = localStorage.getItem("token");
+      const userData = JSON.parse(localStorage.getItem("user"));
+      
+      console.log("Auth Data:", {
+        token: token ? "Token exists" : "No token",
+        email: userData?.email || "No email"
       });
 
-      const fetchedData = res.data;
-      console.log(fetchedData[fetchedData.length - 1]);
-      setFormData(fetchedData[fetchedData.length - 1]);
-      setStudentData(fetchedData[fetchedData.length - 1]);
+      if (!token || !userData?.email) {
+        toast.error("Please login to access this page");
+        return;
+      }
+
+      const apiUrl = `http://localhost:5000/api/getStudents/${userData.email}`;
+      console.log("Fetching from URL:", apiUrl);
+
+      const res = await axios.get(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+
+      console.log("API Response:", {
+        status: res.status,
+        data: res.data
+      });
+
+      if (res.data) {
+        console.log("Setting form data with:", res.data);
+        setFormData(res.data);
+        setStudentData(res.data);
+      } else {
+        console.log("No data found, initializing with user email");
+        const initialData = {
+          ...formData,
+          email: userData.email,
+        };
+        setFormData(initialData);
+        setStudentData(initialData);
+      }
     } catch (error) {
-      console.error("Error fetching student data:", error);
-      toast.error("Failed to fetch student data. Please try again.");
+      console.error("Error details:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        url: error.config?.url
+      });
+      
+      if (error.response) {
+        toast.error(error.response.data.message || "Failed to fetch student data");
+      } else {
+        toast.error("Failed to fetch student data. Please try again.");
+      }
     }
   };
 
@@ -98,26 +128,52 @@ function StudentInfo({ studentData, setStudentData }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Ensure formData is correctly formatted
-    console.log("Form Data:", formData);
-
     try {
+      const token = localStorage.getItem("token");
+      const userData = JSON.parse(localStorage.getItem("user"));
+      
+      if (!token || !userData?.email) {
+        toast.error("Please login to save data");
+        return;
+      }
+
+      // Ensure email is set from user data
+      const dataToSubmit = {
+        ...formData,
+        email: userData.email
+      };
+
+      console.log("Submitting form data:", dataToSubmit);
       const response = await axios.post(
         "http://localhost:5000/api/createStudents",
-        formData,
+        dataToSubmit,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          withCredentials: true,
+            Authorization: `Bearer ${token}`,
+          }
         }
       );
-      console.log(response.data);
-      toast.success("Student information saved successfully!");
+
+      console.log("Save response:", response.data);
+
+      if (response.data) {
+        toast.success("Student information saved successfully!");
+        // Refresh the data after successful save
+        fetchData();
+      }
     } catch (error) {
-      console.error("Error response:", error.response);
-      toast.error("Failed to save student information.");
+      console.error("Save error details:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
+
+      if (error.response) {
+        toast.error(error.response.data.message || "Failed to save student information");
+      } else {
+        toast.error("Failed to save student information. Please try again.");
+      }
     }
   };
 

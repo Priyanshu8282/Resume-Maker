@@ -6,31 +6,39 @@ import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 
+const BASE_URL = 'http://localhost:5000';
+
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { 
     e.preventDefault();
+    setLoading(true);
     try {
-      const response = await axios.post('https://resume-maker-b545.onrender.com/auth/login', { email, password });
-      if (response.data.success) {
+      const response = await axios.post(`${BASE_URL}/auth/login`, { email, password });
+      if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        toast.success('Login successful!');
-        setIsLogged(true); // Update auth state
-        navigate('/resume'); // Redirect to a protected route
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        setIsLogged(true);
+        toast.success(response.data.message, {
+          onClose: () => navigate('/resume')
+        });
       } else {
-        toast.error(response.data.message);
+        toast.error('Login failed');
       }
     } catch (error) {
-      if (error.response && error.response.status === 400 && error.response.data.message === 'User already exists') {
-        toast.error('Email is already registered. Please use a different email.');
+      if (error.response) {
+        toast.error(error.response.data.message || 'Login failed');
       } else {
         console.error('Error saving data:', error);
         toast.error('An error occurred while saving data. Please try again.');
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +76,9 @@ const LoginPage = () => {
               required 
             />
           </label>  
-          <button type='submit'>Login</button>
+          <button type='submit' disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
           <p>Don't have an account? <a href="/register">Sign Up</a></p>
         </form>
       </div>

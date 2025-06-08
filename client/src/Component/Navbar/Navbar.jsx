@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { AuthContext } from "../Auth/AuthContext";
@@ -10,71 +9,22 @@ const Navbar = () => {
   const { isLogged, setIsLogged } = useContext(AuthContext);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Hook to get the current route
-  axios.defaults.withCredentials = true;
+  const location = useLocation();
 
   useEffect(() => {
-    checkAuthStatus();
-  }, []); // Run only once when the component mounts
+    // Check auth status using localStorage
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    setIsLogged(!!(token && user));
+  }, []);
 
-  const checkAuthStatus = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setIsLogged(false);
-        return;
-      }
-
-      const response = await axios.get("http://localhost:5000/auth/checkAuth", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-
-      console.log("response:", response.data.isLoggedIn);
-      setIsLogged(response.data.isLoggedIn);
-    } catch (error) {
-      console.error("Error checking authentication status:", error);
-      setIsLogged(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        toast.error("No token found. Please log in.");
-        return;
-      }
-
-      const response = await axios.post(
-        "http://localhost:5000/auth/logout",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
-
-      if (response.data.success) {
-        // Clear token from local storage and update auth context
-        localStorage.removeItem("token");
-        setIsLogged(false);
-
-        // Redirect to home or login page
-        navigate("/");
-
-        toast.success("Logout successful!");
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      console.error("Logout error:", error);
-      toast.error("Logout failed. Please try again.");
-    }
+  const handleLogout = () => {
+    // Clear all auth related data from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLogged(false);
+    toast.success("Logged out successfully!");
+    navigate("/");
   };
 
   const toggleTheme = () => {
