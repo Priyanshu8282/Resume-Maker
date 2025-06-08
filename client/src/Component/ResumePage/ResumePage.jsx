@@ -30,7 +30,7 @@ function ResumePage() {
 
   const fetchResumeData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/resume/${id}`, {
+      const response = await axios.get(`https://resume-maker-b545.onrender.com/api/resume/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
