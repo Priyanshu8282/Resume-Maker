@@ -23,7 +23,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // CORS configuration
 const corsOptions = {
-  origin: 'http://localhost:5174', // Replace with your frontend's origin
+  origin: 'https://resume-maker-1-8vfd.onrender.com', // Replace with your frontend's origin
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 app.use(cors(corsOptions));
