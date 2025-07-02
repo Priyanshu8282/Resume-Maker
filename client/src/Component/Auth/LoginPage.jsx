@@ -14,6 +14,10 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const { setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [showForgot, setShowForgot] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotHover, setForgotHover] = useState(false);
 
   const handleSubmit = async (e) => { 
     e.preventDefault();
@@ -50,6 +54,26 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    if (!forgotEmail) return toast.error('Please enter your email.');
+    setForgotLoading(true);
+    try {
+      const response = await axios.post(`${BASE_URL}/auth/forgot-password`, { email: forgotEmail });
+      toast.success(response.data.message || 'Password reset link sent!');
+      setShowForgot(false);
+      setForgotEmail("");
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message || 'Failed to send reset link');
+      } else {
+        toast.error('Failed to send reset link. Please try again.');
+      }
+    } finally {
+      setForgotLoading(false);
+    }
+  };
+
   return (
     <div className="center-container">
       <ToastContainer />
@@ -79,6 +103,40 @@ const LoginPage = () => {
           <button type='submit' disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
+          <p style={{ marginTop: '10px' }}>
+            <a
+              href="#"
+              onClick={e => { e.preventDefault(); navigate('/forgot-password'); }}
+              style={{ color: forgotHover ? '#218838' : '#28a745', cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={() => setForgotHover(true)}
+              onMouseLeave={() => setForgotHover(false)}
+            >
+              Forgot Password?
+            </a>
+          </p>
+          {showForgot && (
+            <div className="forgot-modal" style={{ background: '#fff', border: '1px solid #ccc', padding: 20, borderRadius: 8, marginTop: 10 }}>
+              <h3>Forgot Password</h3>
+              <form onSubmit={handleForgotPassword}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={forgotEmail}
+                  onChange={e => setForgotEmail(e.target.value)}
+                  required
+                  style={{ padding: 8, width: '100%', marginBottom: 10 }}
+                />
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <button type="submit" disabled={forgotLoading} style={{ padding: '8px 16px' }}>
+                    {forgotLoading ? 'Sending...' : 'Send Reset Link'}
+                  </button>
+                  <button type="button" onClick={() => { setShowForgot(false); setForgotEmail(""); }} style={{ padding: '8px 16px', background: '#eee' }}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
           <p>Don't have an account? <a href="/register">Sign Up</a></p>
         </form>
       </div>
