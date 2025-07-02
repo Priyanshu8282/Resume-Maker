@@ -5,7 +5,7 @@ import "./Output.css";
 function Output({ studentData }) {
   const portfolioRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://resume-maker-b545.onrender.com";
   console.log(studentData)
 
   
