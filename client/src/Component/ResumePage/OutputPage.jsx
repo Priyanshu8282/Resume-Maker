@@ -5,6 +5,7 @@ import "./Output.css";
 function Output({ studentData }) {
   const portfolioRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
+  const BASE_URL = "http://localhost:5000";
   console.log(studentData)
 
   
@@ -40,7 +41,7 @@ function Output({ studentData }) {
             <h2>Personal Profile</h2>
             <div className="profile-image-container">
               <img
-                src={studentData?.image}
+                src={studentData?.image ? (studentData.image.startsWith('http') ? studentData.image : `${BASE_URL}${studentData.image}`) : ''}
                 alt=""
                 className="profile-image"
               />
