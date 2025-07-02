@@ -5,6 +5,9 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// Global base URL
+const BASE_URL = "http://localhost:5000";
+
 function StudentInfo({ studentData, setStudentData }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,6 +27,7 @@ function StudentInfo({ studentData, setStudentData }) {
   });
   const [showJSON, setShowJSON] = useState(false);
   const [loggedInEmail, setLoggedInEmail] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     // Get user email from localStorage
@@ -52,7 +56,7 @@ function StudentInfo({ studentData, setStudentData }) {
         return;
       }
 
-      const apiUrl = `https://resume-maker-b545.onrender.com/api/getStudents/${userData.email}`;
+      const apiUrl = `${BASE_URL}/api/getStudents/${userData.email}`;
       console.log("Fetching from URL:", apiUrl);
 
       const res = await axios.get(apiUrl, {
@@ -112,14 +116,12 @@ function StudentInfo({ studentData, setStudentData }) {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setImageFile(file);
+      // Optionally, update preview
       const reader = new FileReader();
       reader.onloadend = () => {
-        const updatedFormData = {
-          ...formData,
-          image: reader.result, // Base64 string
-        };
-        setFormData(updatedFormData);
-        setStudentData(updatedFormData);
+        setFormData(prev => ({ ...prev, image: reader.result }));
+        setStudentData(prev => ({ ...prev, image: reader.result }));
       };
       reader.readAsDataURL(file);
     }
@@ -127,48 +129,39 @@ function StudentInfo({ studentData, setStudentData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const token = localStorage.getItem("token");
       const userData = JSON.parse(localStorage.getItem("user"));
-      
       if (!token || !userData?.email) {
         toast.error("Please login to save data");
         return;
       }
-
-      // Ensure email is set from user data
-      const dataToSubmit = {
-        ...formData,
-        email: userData.email
-      };
-
-      console.log("Submitting form data:", dataToSubmit);
+      const form = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === 'projects') {
+          form.append(key, JSON.stringify(value));
+        } else if (key !== 'image') {
+          form.append(key, value);
+        }
+      });
+      if (imageFile) {
+        form.append('image', imageFile);
+      }
       const response = await axios.post(
-        "https://resume-maker-b545.onrender.com/api/createStudents",
-        dataToSubmit,
+        `${BASE_URL}/api/createOrUpdateStudent`,
+        form,
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
-          }
+          },
         }
       );
-
-      console.log("Save response:", response.data);
-
       if (response.data) {
         toast.success("Student information saved successfully!");
-        // Refresh the data after successful save
         fetchData();
       }
     } catch (error) {
-      console.error("Save error details:", {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status
-      });
-
       if (error.response) {
         toast.error(error.response.data.message || "Failed to save student information");
       } else {
@@ -230,7 +223,7 @@ function StudentInfo({ studentData, setStudentData }) {
       <h1>Student Portfolio</h1>
       <form onSubmit={handleSubmit} method="post" encType="multipart/form-data">
         <div className="input-name">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Name:<span style={{color: 'red'}}>*</span></label>
           <input
             type="text"
             id="name"
@@ -243,7 +236,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-email">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email:<span style={{color: 'red'}}>*</span></label>
           <input
             type="email"
             id="email"
@@ -256,7 +249,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-dob">
-          <label htmlFor="dob">DOB:</label>
+          <label htmlFor="dob">DOB:<span style={{color: 'red'}}>*</span></label>
           <input
             type="date"
             id="dob"
@@ -267,7 +260,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-mobile">
-          <label htmlFor="mobile">Mobile Number:</label>
+          <label htmlFor="mobile">Mobile Number:<span style={{color: 'red'}}>*</span></label>
           <input
             type="tel"
             id="mobile"
@@ -303,7 +296,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-experience">
-          <label htmlFor="experience">Experience (years):</label>
+          <label htmlFor="experience">Experience (years):<span style={{color: 'red'}}>*</span></label>
           <input
             type="number"
             id="experience"
@@ -316,7 +309,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-skill">
-          <label htmlFor="skill">Skill:</label>
+          <label htmlFor="skill">Skill:<span style={{color: 'red'}}>*</span></label>
           <textarea
             id="skill"
             placeholder="Enter your skills"
@@ -338,7 +331,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-linkedin">
-          <label htmlFor="linkedin">LinkedIn URL:</label>
+          <label htmlFor="linkedin">LinkedIn URL:<span style={{color: 'red'}}>*</span></label>
           <input
             type="url"
             id="linkedin"
@@ -350,7 +343,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-youtube">
-          <label htmlFor="youtube">Youtube URL:</label>
+          <label htmlFor="youtube">Youtube URL:<span style={{color: 'red'}}>*</span></label>
           <input
             type="url"
             id="youtube"
@@ -362,7 +355,7 @@ function StudentInfo({ studentData, setStudentData }) {
           />
         </div>
         <div className="input-image">
-          <label htmlFor="image">Upload Image:</label>
+          <label htmlFor="image">Upload Image:<span style={{color: 'red'}}>*</span></label>
           <input
             type="file"
             id="image"
@@ -376,7 +369,7 @@ function StudentInfo({ studentData, setStudentData }) {
           <h2>Projects</h2>
           {formData.projects?.map((project, index) => (
             <div key={index} className="project-entry">
-              <label htmlFor={`project-title-${index}`}>Project Title:</label>
+              <label htmlFor={`project-title-${index}`}>Project Title:<span style={{color: 'red'}}>*</span></label>
               <input
                 type="text"
                 name="title"
@@ -386,9 +379,7 @@ function StudentInfo({ studentData, setStudentData }) {
                 onChange={(e) => handleProjectChange(index, e)}
                 required
               />
-              <label htmlFor={`project-description-${index}`}>
-                Description:
-              </label>
+              <label htmlFor={`project-description-${index}`}>Description:<span style={{color: 'red'}}>*</span></label>
               <textarea
                 name="description"
                 id={`project-description-${index}`}
