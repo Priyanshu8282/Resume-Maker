@@ -4,6 +4,9 @@ import html2pdf from "html2pdf.js";
 import "./ResumePage.css";
 import axios from "axios";
 
+// Global base URL
+const BASE_URL = "http://localhost:5000";
+
 function ResumePage() {
   const [studentData, setStudentData] = useState({
     name: "",
@@ -30,7 +33,7 @@ function ResumePage() {
 
   const fetchResumeData = async () => {
     try {
-      const response = await axios.get(`https://resume-maker-b545.onrender.com/api/resume/${id}`, {
+      const response = await axios.get(`${BASE_URL}/api/resume/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -72,7 +75,7 @@ function ResumePage() {
             <h2>Personal Profile</h2>
             <div className="profile-image-container">
               <img
-                src={studentData?.image}
+                src={studentData?.image ? (studentData.image.startsWith('http') ? studentData.image : `${BASE_URL}${studentData.image}`) : ''}
                 alt=""
                 className="profile-image"
               />
