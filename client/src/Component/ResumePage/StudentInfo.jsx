@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Global base URL
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://resume-maker-b545.onrender.com";
 
 function StudentInfo({ studentData, setStudentData }) {
   const [formData, setFormData] = useState({
