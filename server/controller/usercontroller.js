@@ -138,7 +138,7 @@ export const forgotPassword = async (req, res) => {
         await user.save();
 
         // Send the reset token via email
-        const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
+        const resetUrl = `https://resume-maker-1-8vfd.onrender.com/reset-password/${resetToken}`;
         const subject = 'Password Reset Request';
         const text = `You requested a password reset. Click the link to reset your password: ${resetUrl}`;
 
@@ -152,7 +152,9 @@ export const forgotPassword = async (req, res) => {
 };
 
 export const resetPassword = async (req, res) => {
-    const { token, password } = req.body;
+    // Accept token from either URL param or body
+    const token = req.params.token || req.body.token;
+    const { password } = req.body;
 
     try {
         if (!token || !password) {
