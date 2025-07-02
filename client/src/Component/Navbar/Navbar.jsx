@@ -7,7 +7,10 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const { isLogged, setIsLogged } = useContext(AuthContext);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const storedTheme = localStorage.getItem("theme");
+    return storedTheme === "dark";
+  });
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,6 +19,13 @@ const Navbar = () => {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     setIsLogged(!!(token && user));
+    // Set initial theme
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
   }, []);
 
   const handleLogout = () => {
@@ -28,8 +38,17 @@ const Navbar = () => {
   };
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode", !isDarkMode);
+    setIsDarkMode((prev) => {
+      const newMode = !prev;
+      if (newMode) {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
+      }
+      return newMode;
+    });
   };
 
   const handlePageToggle = () => {
