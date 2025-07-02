@@ -18,6 +18,7 @@ const LoginPage = () => {
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotLoading, setForgotLoading] = useState(false);
   const [forgotHover, setForgotHover] = useState(false);
+  const [signupHover, setSignupHover] = useState(false);
 
   const handleSubmit = async (e) => { 
     e.preventDefault();
@@ -137,7 +138,12 @@ const LoginPage = () => {
               </form>
             </div>
           )}
-          <p>Don't have an account? <a href="/register">Sign Up</a></p>
+          <p>Don't have an account? <span
+            style={{ color: signupHover ? '#218838' : '#28a745', cursor: 'pointer', transition: 'color 0.2s' }}
+            onClick={() => navigate('/register')}
+            onMouseEnter={() => setSignupHover(true)}
+            onMouseLeave={() => setSignupHover(false)}
+          >Sign Up</span></p>
         </form>
       </div>
     </div>
