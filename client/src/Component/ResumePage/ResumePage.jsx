@@ -5,7 +5,7 @@ import "./ResumePage.css";
 import axios from "axios";
 
 // Global base URL
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://resume-maker-b545.onrender.com";
 
 function ResumePage() {
   const [studentData, setStudentData] = useState({
