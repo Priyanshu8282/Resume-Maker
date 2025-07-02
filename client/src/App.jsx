@@ -7,6 +7,8 @@ import MainPage from "./Component/ResumePage/MainPage";
 import ResumePage from "./Component/ResumePage/ResumePage";
 import { useState, useContext } from "react";
 import { AuthContext } from "./Component/Auth/AuthContext";
+import ForgotPassword from "./Component/Auth/ForgotPassword";
+import ResetPassword from "./Component/Auth/ResetPassword";
 
 function ProtectedRoute({ children }) {
   const { isLogged } = useContext(AuthContext);
@@ -32,6 +34,8 @@ function App() {
       <Routes>
         <Route path="/" element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+        <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+        <Route path="/reset-password/:token" element={<PublicRoute><ResetPassword /></PublicRoute>} />
         <Route path="/resume" element={<ProtectedRoute><MainPage/></ProtectedRoute>} />
         <Route path="/resume/:id" element={<ProtectedRoute><ResumePage /></ProtectedRoute>} />
       </Routes>
